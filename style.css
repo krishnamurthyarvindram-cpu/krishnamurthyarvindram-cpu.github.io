@@ -1,0 +1,187 @@
+/* ===========================================================
+   Arvind Krishnamurthy — modeled on the "minimal" theme
+   Single-page academic layout: fixed-feel left rail + content
+   =========================================================== */
+
+:root {
+  --link:       #267cb9;
+  --link-hover: #069;
+  --text:       #333;
+  --head:       #222;
+  --muted:      #777;
+  --rule:       #e6e6e6;
+  --rule-soft:  #f0f0f0;
+  --tag-bg:     #eef4f9;
+  --bg:         #ffffff;
+  --sans: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--link-hover); text-decoration: underline; }
+
+.wrap {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: 16rem 1fr;
+  gap: 3.25rem;
+  align-items: start;
+}
+
+/* ---------- Left rail ---------- */
+.side { position: sticky; top: 2.25rem; align-self: start; }
+
+.name {
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--head);
+  margin: 0 0 1.1rem;
+  letter-spacing: -0.01em;
+}
+
+.headshot {
+  width: 100%;
+  max-width: 13rem;
+  height: auto;
+  border-radius: 3px;
+  display: block;
+  margin-bottom: 1.1rem;
+}
+
+.affil {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #555;
+  margin: 0 0 1rem;
+}
+.affil a { color: var(--link); }
+
+.side-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+}
+
+.jump {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+}
+.jump a { color: var(--muted); }
+.jump a:hover { color: var(--link); }
+
+/* ---------- Main content ---------- */
+.content { min-width: 0; max-width: 40rem; }
+
+.content > p { margin: 0 0 1.05rem; }
+
+.intro { font-size: 1.02rem; }
+
+h2.sec {
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--head);
+  margin: 2.6rem 0 1.1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* lists */
+ol.pubs, ul.papers { margin: 0; padding-left: 1.4rem; }
+ol.pubs > li { margin-bottom: 1.25rem; padding-left: 0.3rem; }
+ul.papers { list-style: square; }
+ul.papers > li { margin-bottom: 1rem; padding-left: 0.3rem; }
+ul.papers li::marker { color: var(--link); }
+
+.ptitle { font-weight: 700; }
+.venue  { font-style: italic; font-weight: 700; }
+.year   { color: var(--text); }
+.with   { color: #555; }
+
+.tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--link-hover);
+  background: var(--tag-bg);
+  padding: 0.08rem 0.45rem;
+  border-radius: 3px;
+  margin-left: 0.3rem;
+  white-space: nowrap;
+}
+.award { display: block; margin-top: 0.3rem; font-size: 0.85rem; color: var(--muted); }
+.linkset { font-size: 0.85rem; color: #999; }
+
+/* collapsible abstracts */
+details.abs { margin-top: 0.35rem; }
+details.abs > summary {
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--link);
+  list-style: none;
+  display: inline-block;
+}
+details.abs > summary::-webkit-details-marker { display: none; }
+details.abs > summary::before { content: "▸ "; font-size: 0.7rem; }
+details.abs[open] > summary::before { content: "▾ "; }
+details.abs > summary:hover { text-decoration: underline; }
+details.abs p {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #555;
+  padding-left: 0.2rem;
+}
+
+/* book */
+.book-desc p { margin: 0 0 1rem; }
+
+/* footer */
+.foot {
+  grid-column: 1 / -1;
+  margin-top: 2rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 0; top: 0; background: #222; color: #fff; padding: 0.5rem 0.9rem; z-index: 5; }
+:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 820px) {
+  .wrap { grid-template-columns: 1fr; gap: 1.75rem; padding: 2rem 1.4rem 3rem; }
+  .side { position: static; }
+  .headshot { max-width: 11rem; }
+  .name { font-size: 1.7rem; }
+  .side-links { flex-flow: row wrap; gap: 0.3rem 1.1rem; }
+  .jump { display: none; }
+  .content { max-width: none; }
+}
